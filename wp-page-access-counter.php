@@ -31,12 +31,14 @@ if(!function_exists('get_post_id')){
 		$region = get_field('region',$region_id);
 		$modulo = get_field('modulo',$region_id);
 		$secret = get_field('secret',$region_id);
+        $showwholesecret = get_field('showwholesecret',$region_id);
         wp_enqueue_script('wp-page-access-counter', plugins_url( '/js/wp-page-access-counter.js', __FILE__ ), array('jquery'), '', true);
         wp_localize_script('wp-page-access-counter', 'my_script_vars', array(
                 'postID' => $post->ID,
 				'region' => $region,
 				'modulo' => $modulo,
-				'secret' => $secret
+				'secret' => $secret,
+                'showwholesecret' => $showwholesecret
             )
         );
     }
@@ -52,6 +54,7 @@ function ordendergsi_secret($atts = array(), $content = null, $tag = '' ){
 	$region_id = get_field('region',$post->ID);
 	$secret = get_field('secret',$region_id);
 	$modulo = get_field('modulo',$region_id);
+    $showwholesecret = get_field(' showwholesecret',$region_id);
     $atts = array_change_key_case( (array) $atts, CASE_LOWER );
  
     // override default attributes with user attributes
